@@ -1,0 +1,8 @@
+{
+  "appId": "in.bankofindia.cashequalisation",
+  "appName": "BOI Cash Equalisation",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

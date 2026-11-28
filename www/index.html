@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#082444" />
+  <title>BOI Cash Book</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand-row">
+      <img class="boi-logo" src="logo.png" alt="Bank of India" />
+      <div class="brand-text">
+        <h1 id="app-heading" class="app-title app-heading">Bank of India &ndash; Teller Desk</h1>
+      </div>
+    </div>
+    <label class="date-chip"><span id="hdr-date"></span><span aria-hidden="true">&#9662;</span><input id="cb-date" type="date" aria-label="Choose date" /></label>
+  </header>
+
+  <main class="container">
+    <nav class="mode-switch" role="tablist">
+      <button id="tab-safe" class="mode-btn active" type="button"><span class="tab-title">Cash in Safe</span></button>
+      <button id="tab-counter" class="mode-btn" type="button"><span class="tab-title">Cash at Counter</span></button>
+      <button id="tab-book" class="mode-btn" type="button"><span class="tab-title">Cash Book</span></button>
+    </nav>
+
+    <section id="summary-card" class="summary-card">
+      <div class="summary-header"><span id="session-label"></span><span id="session-pieces" class="summary-pieces"></span></div>
+      <div id="session-total" class="summary-amount">&#8377;0</div>
+      <div id="split-row" class="split-row">
+        <div><span>Issuable</span><strong id="sum-issuable">&#8377;0</strong></div>
+        <div><span>Soil</span><strong id="sum-soil">&#8377;0</strong></div>
+        <div><span>Coins</span><strong id="sum-coins">&#8377;0</strong></div>
+      </div>
+    </section>
+
+    <section id="book-section" class="cashbook hidden">
+      <div class="cb-card big">
+        <label class="cb-line"><span>Last Day's Balance</span><input id="cb-opening" class="cb-input" type="text" inputmode="numeric" placeholder="0" /></label>
+        <label class="cb-line"><span>Paid To-day</span><input id="cb-paid" class="cb-input" type="text" inputmode="numeric" placeholder="0" /></label>
+        <label class="cb-line"><span>Received To-day</span><input id="cb-recv" class="cb-input" type="text" inputmode="numeric" placeholder="0" /></label>
+        <label class="cb-line"><span>Cash in Finacle</span><input id="cb-finacle" class="cb-input" type="text" inputmode="numeric" placeholder="0" /></label>
+      </div>
+      <div class="cb-card cb-result">
+        <div class="cb-line static"><span>Cash in Hand<small>Counter + Safe</small></span><strong id="cb-hand"></strong></div>
+        <div class="cb-line static"><span>Cash Balance<small>Last Day + Received &minus; Paid</small></span><strong id="cb-balance"></strong></div>
+      </div>
+      <div class="cb-card">
+        <div class="cb-group">Total Denominations (Safe + Counter)</div>
+        <div id="tot-table" class="tot-table"></div>
+      </div>
+    </section>
+
+    <section id="count-section" class="denom-section hidden">
+      <div id="denomination-list" class="denom-list"></div>
+    </section>
+  </main>
+
+  <footer class="action-bar">
+    <button id="btn-reset" class="btn-secondary" type="button">Clear Day</button>
+    <button id="btn-check" class="btn-primary" type="button">Check Cash</button>
+  </footer>
+
+  <div id="emoji-overlay" class="emoji-overlay hidden" aria-hidden="true"><img id="emoji-img" alt="" /></div>
+  <div id="result-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div id="result-modal-card" class="modal-card result-modal-card">
+      <img id="result-modal-img" class="result-modal-img" alt="" />
+      <div id="result-modal-badge" class="result-badge"></div>
+      <h2 id="result-modal-heading" class="result-heading"></h2>
+      <p id="result-modal-statement" class="result-modal-statement"></p>
+      <div class="result-modal-breakdown">
+        <div><span>Cash in Finacle</span><strong id="modal-finacle-val"></strong></div>
+        <div><span>Cash in Hand</span><strong id="modal-hand-val"></strong></div>
+        <div><span>Cash Balance</span><strong id="modal-balance-val"></strong></div>
+      </div>
+      <div class="modal-actions stack"><button id="btn-pdf" class="btn-pdf" type="button">&#128196; Download PDF Report</button><button id="result-modal-close" class="btn-primary" type="button">OK</button></div>
+    </div>
+  </div>
+
+  <div id="confirm-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-text"></p>
+      <div class="modal-actions">
+        <button id="confirm-cancel" class="btn-secondary" type="button">Cancel</button>
+        <button id="confirm-ok" class="btn-danger" type="button">Yes</button>
+      </div>
+    </div>
+  </div>
+    <script src="app.js"></script>
+</body>
+</html>
